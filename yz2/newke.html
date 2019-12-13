@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>newke</title>
+    <style>
+    #box{
+        width: 800px;
+        height: 800px;
+        background-color: #c3f2ff;
+        border: 1px solid #c3f2ff;
+        margin: auto;
+    }
+    #box1{
+        width: 500px;
+        height: 620px;
+        border: 1px solid #a9e8f7;  
+        padding:109px 140px 71px 162px;
+    }
+    #box2{
+        height: 120px;  
+        background-image: url(tu1.jpg);
+
+    }
+    #box3,#box4,#box5,#box6{
+        height:100px ;
+        border: 1px solid #a9e8f7; 
+        border-bottom-color: #ecf4fa;
+        background-color: #ffffff;
+
+    }
+    img{  
+       margin-top: 37px;
+       margin-left: 43px;
+        }
+    input{
+        font-size: 24px;
+        color:#26b9ff;
+        border: 0px ;
+        background-color: #ffffff;
+    }
+    #input1{
+        float: right;
+        margin-right:94px ;
+        margin-top:45px ;
+    }
+    #input{
+        float:left;
+        margin-left:418px;
+        margin-top:-33px ;
+
+    }
+    #input2{
+        float:left;
+        margin-left:418px;
+        margin-top:-33px ;
+
+    }
+    #input3{
+        float:left;
+        margin-left:418px;
+        margin-top:-33px ;
+
+    }
+    #input4{
+        float:left;
+        margin-left:418px;
+        margin-top:-33px ;
+
+    }
+    #box7{
+    height: 100px;
+    border: 1px solid #a9e8f7; 
+    background-color: #ffffff;
+    }
+    </style>
+    <script>
+        window.onload=function(){
+    var input=document.getElementById('input');
+    var input2=document.getElementById('input2');
+    var input3=document.getElementById('input3');
+    var input4=document.getElementById('input4');
+    var yj=document.getElementById('yj');
+    var sb=document.getElementById('sb');
+    var wx=document.getElementById('wx');
+    var xx=document.getElementById('xx');
+    yj.onclick=function(){
+        input.value++;
+        document.getElementById('input').value=input.value;
+        }
+    sb.onclick=function(){
+        input2.value++;
+        document.getElementById('input2').value=input2.value;
+        }
+    wx.onclick=function(){
+        input3.value--;
+        document.getElementById('input3').value=input3.value;
+        }
+    xx.onclick=function(){
+        input4.value--;
+        document.getElementById('input4').value=input4.value;
+        }
+}
+    </script>
+</head>
+<body>
+    <div id="box">
+        <div id="box1">
+            <div id="box2">
+            </div>
+            <div id="box3">
+              <a id="yj" href="C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE">
+                 <img src="tu2.jpg">
+              </a>
+              <input value="+" id="input1" type="button">
+              <input value="1" id="input" type="button">   
+            </div>
+            <div id="box4">
+                <a id="sb">
+                    <img src="tu3.jpg"> 
+                </a>
+                <input id="input1" value="+" type="button">
+                <input value="1" id="input2" type="button"> 
+            </div>
+            <div id="box5">
+                <a id="wx">
+                    <img src="tu4.jpg"> 
+                </a>
+                <input id="input1" value="-" type="button">
+                <input value="125" id="input3" type="button"> 
+                </div>
+            <div id="box6">
+                <a id="xx">
+                    <img src="tu5.jpg"> 
+                 </a>
+                <input id="input1" value="-" type="button">
+                <input value="23" id="input4" type="button"> 
+                </div>
+            <div id="box7">
+                </div>
+    </div>
+    </div>
+</body>
+</html>
