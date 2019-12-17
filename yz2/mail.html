@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发送邮件</title>
+    <style>
+    body{
+        background-image: url(08.gif);
+        background-repeat: no-repeat;
+    }
+    button{
+        width: 40px;
+        height: 100px;
+        font-size: 20px;
+        border: 2px solid grey;
+        background-color: transparent;
+        color: tomato;
+    }
+    input{
+        width: 1300px;
+        height: 50px;
+        float: right;
+        color: grey;
+        font-size:20px;
+        border: 2px solid grey;
+        border-top: transparent;
+        border-right: transparent;
+        border-left: transparent;
+        background-color: transparent;
+
+    }
+    #input{
+        width: 1260px;
+        height: 50px;
+        float: left;
+        margin-left:50px ;
+        margin-top:-35px ;
+    }
+    #input1{
+        height: 12px;
+        font-size:12px;
+        border: 1px solid transparent;
+        margin-top: 10px;
+
+    }
+    #file{
+        color: grey;
+        font-size:20px ;
+        border: 1px solid grey;
+        margin-top: 10px;
+    }
+    #mail{
+        border-color: none;
+    }
+    #mail ul li{
+        cursor: pointer;
+    }
+    img{
+        width: 40px;
+        height: 40px;
+        margin-top: -23px;
+        border: 2px solid grey;
+        border-top: transparent;
+        border-right: transparent;
+        border-left: transparent;
+
+    }
+    textarea{
+        width: 1300px;
+        height: 350px;
+        border: 2px solid grey;
+        font-size: 20px;
+        background-color: transparent;
+        background-attachment: scroll;
+        float: right;
+        margin-top: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div>
+    <button onclick="mailsome1()">发送</button>
+    <input type="text" value="收件人:" id="but" autocomplete="off">
+    <input id="input" type="text" placeholder="主题"><img src="xin.jpg">
+    </div>
+    <div>
+    <input type="file" id="file" >
+    </div>
+    <div>
+    <textarea></textarea>
+    </div>
+    <div>
+    <input id="input1" type="text" value="15927824100@163.com" disabled="disabled">
+    </div>
+    <script>
+    jQuery.AutoComplete = function(selector){
+    var elt = $(selector);
+    var autoComplete,autoLi;
+    var strHtml = [];
+    strHtml.push('<div class="AutoComplete" id="AutoComplete">');
+    strHtml.push('	<ul class="AutoComplete_ul">');
+    strHtml.push('	<li class="AutoComplete_title">请选择邮箱后缀</li>');
+    strHtml.push('	<li hz="@qq.com"></li>');
+    strHtml.push('	<li hz="@163.com"></li>');
+    strHtml.push('	<li hz="@126.com"></li>');
+    strHtml.push('	<li hz="@sohu.com"></li>');
+    strHtml.push('	<li hz="@sina.com"></li>');
+    strHtml.push('	</ul>');
+    strHtml.push('</div>');
+    $('body').append(strHtml.join(''));
+    autoComplete = $('#AutoComplete');
+    autoComplete.data('elt',elt);
+    autoLi = autoComplete.find('li:not(.AutoComplete_title)');
+    autoLi.mouseover(function(){
+    $(this).siblings().filter('.hover').removeClass('hover');
+    $(this).addClass('hover');
+    }).mouseout(function(){
+    $(this).removeClass('hover');
+    }).mousedown(function(){
+    autoComplete.data('elt').val($(this).text()).change();
+    autoComplete.hide();
+    });
+    //用户名补全+翻动
+    elt.keyup(function(e){
+    if(/13|38|40|116/.test(e.keyCode) || this.value == ''){
+    return false;
+    }
+    var username = this.value;
+    if(username.indexOf('@') == -1){
+    autoComplete.hide();
+    return false;
+    }
+    autoLi.each(function(){
+    this.innerHTML = username.replace(/\@+.*/,'') + $(this).attr('hz');
+    if(this.innerHTML.indexOf(username) >= 0){
+    $(this).show();
+    }else{
+    $(this).hide();
+    }
+    }).filter('.hover').removeClass('hover');
+    autoComplete.show().css({
+    left: $(this).offset().left,
+    top: $(this).offset().top + $(this).outerHeight(true) - 1,
+    position: 'absolute',
+    zIndex: '99999'
+    });
+    if(autoLi.filter(':visible').length == 0){
+    autoComplete.hide();
+    }else{
+    autoLi.filter(':visible').eq(0).addClass('hover');
+    }
+    }).keydown(function(e){
+    if(e.keyCode == 38){ //上
+    autoLi.filter('.hover').prev().not('.AutoComplete_title').addClass('hover').next().removeClass('hover');
+    }else if(e.keyCode == 40){ //下
+    autoLi.filter('.hover').next().addClass('hover').prev().removeClass('hover');
+    }else if(e.keyCode == 13){ //Enter
+    autoLi.filter('.hover').mousedown();
+    e.preventDefault();	//如有表单，阻止表单提交
+    }
+    }).focus(function(){
+    autoComplete.data('elt',$(this));
+    }).blur(function(){
+    autoComplete.hide();
+    });
+    }
+    
+    
+    $(function(){
+    $.AutoComplete('#but');
+    });
+    </script>    
+</body>
+</html>
